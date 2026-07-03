@@ -1,0 +1,183 @@
+{
+  "$schema": "https://gobl.org/draft-0/tax/regime-def",
+  "name": {
+    "en": "Finland",
+    "fi": "Suomi"
+  },
+  "description": {
+    "en": "Finland's tax system is administered by the Finnish Tax Administration\n(Verohallinto / Vero). As an EU member state, Finland follows the EU VAT\nDirective with locally adapted rates.\n\nVAT (arvonlisävero, ALV) applies at a standard rate with reduced rates for\nspecific goods and services such as food, books, medicines, passenger\ntransport, and accommodation. The standard rate rose from 24% to 25.5% on\n1 September 2024.\n\nBusinesses are identified by their Business ID (Y-tunnus) in the format\n\"1234567-8\" (seven digits, a hyphen and a check digit). The VAT number is\nthe same identifier without the hyphen, prefixed with the FI country code\n(e.g. FI12345678).\n\nFinland supports credit notes for invoice corrections. E-invoicing follows\nthe European EN 16931 standard and is commonly exchanged over the Peppol\nnetwork."
+  },
+  "time_zone": "Europe/Helsinki",
+  "country": "FI",
+  "currency": "EUR",
+  "tax_scheme": "VAT",
+  "identities": [
+    {
+      "code": "Y-TUNNUS",
+      "name": {
+        "en": "Business ID",
+        "fi": "Y-tunnus",
+        "sv": "FO-nummer"
+      },
+      "sources": [
+        {
+          "title": {
+            "en": "YTJ - Business ID"
+          },
+          "url": "https://www.ytj.fi/en/index/businessid.html"
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "schema": "bill/invoice",
+      "list": [
+        {
+          "tags": [
+            "reverse-charge"
+          ],
+          "cat": [
+            "VAT"
+          ],
+          "note": {
+            "cat": "VAT",
+            "key": "reverse-charge",
+            "text": "Reverse charge: Customer to account for VAT to the relevant tax authority."
+          }
+        }
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "schema": "bill/invoice",
+      "types": [
+        "credit-note"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "code": "VAT",
+      "name": {
+        "en": "VAT",
+        "fi": "ALV"
+      },
+      "title": {
+        "en": "Value Added Tax",
+        "fi": "Arvonlisävero"
+      },
+      "keys": [
+        {
+          "key": "standard",
+          "name": {
+            "en": "Standard"
+          }
+        },
+        {
+          "key": "zero",
+          "name": {
+            "en": "Zero"
+          }
+        },
+        {
+          "key": "reverse-charge",
+          "name": {
+            "en": "Reverse charge"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "exempt",
+          "name": {
+            "en": "Exempt"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "export",
+          "name": {
+            "en": "Export"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "intra-community",
+          "name": {
+            "en": "Intra-community"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "outside-scope",
+          "name": {
+            "en": "Outside scope"
+          },
+          "no_percent": true
+        }
+      ],
+      "rates": [
+        {
+          "rate": "general",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "Standard Rate",
+            "fi": "Yleinen verokanta"
+          },
+          "values": [
+            {
+              "since": "2024-09-01",
+              "percent": "25.5%"
+            },
+            {
+              "since": "2013-01-01",
+              "percent": "24.0%"
+            }
+          ]
+        },
+        {
+          "rate": "reduced",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "Reduced Rate",
+            "fi": "Alennettu verokanta"
+          },
+          "values": [
+            {
+              "percent": "13.5%"
+            }
+          ]
+        },
+        {
+          "rate": "super-reduced",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "Reduced Rate for Publications",
+            "fi": "Lehtien verokanta"
+          },
+          "values": [
+            {
+              "percent": "10.0%"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": {
+            "en": "Finnish Tax Administration (Vero) - Rates of VAT"
+          },
+          "url": "https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/vat/rates-of-vat/",
+          "at": "2026-07-01T00:00:00"
+        }
+      ]
+    }
+  ]
+}
